@@ -1,0 +1,249 @@
+@import "../../mixins.scss";
+
+.header_block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.1);
+    padding: 5px 0;
+    transition: all .3s ease;
+    z-index: 10;
+
+    @include bp(medium) {
+        padding: 10px 0;
+    }
+
+    .header_nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .header_logo_box {
+            .header_logo_link {
+                display: flex;
+
+                .header_logo_img {
+                    height: 34px;
+                    width: auto;
+                }
+            }
+        }
+
+        .header_links_box {
+            @include bp(medium) {
+                display: none;
+            }
+
+            .links_list {
+                display: flex;
+                align-items: center;
+
+                .links_list_item {
+                    margin-right: 15px;
+                    border-radius: 8px;
+                    padding: 5px 15px;
+                    border: 2px solid white;
+                    transition: all .3s ease;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+
+                    .list_item_link {
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 17px;
+                        line-height: 20px;
+                        letter-spacing: -0.32px;
+                        color: #45494F;
+                    }
+
+                    &:hover {
+                        border: 2px solid #EAEDF5;
+                        transition: all .3s ease;
+
+                        .list_item_link {
+                            color: #2E75FF;
+                        }
+                    }
+                }
+            }
+        }
+
+        .hamburger_mobile {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: none;
+
+            @include bp(medium) {
+                display: flex;
+            }
+
+            .line {
+                fill: none;
+                stroke: #C4C4C4;
+                stroke-width: 6;
+                transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+
+                &1 {
+                    stroke-dasharray: 60 207;
+                    stroke-width: 3;
+                }
+
+                &2 {
+                    stroke-dasharray: 60 60;
+                    stroke-width: 3;
+                }
+
+                &3 {
+                    stroke-dasharray: 60 207;
+                    stroke-width: 3;
+                }
+            }
+
+            &.open .line {
+                &1 {
+                    stroke-dasharray: 90 207;
+                    stroke-dashoffset: -134;
+                    stroke-width: 3;
+                }
+
+                &2 {
+                    stroke-dasharray: 1 60;
+                    stroke-dashoffset: -30;
+                    stroke-width: 3;
+                }
+
+                &3 {
+                    stroke-dasharray: 90 207;
+                    stroke-dashoffset: -134;
+                    stroke-width: 3;
+                }
+            }
+        }
+
+    }
+
+    &.fixed {
+        background-color: rgb(255, 255, 255);
+        transition: all .3s ease;
+    }
+
+    .menu_mobile {
+        display: none;
+        position: fixed;
+        bottom: -300vh;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        transition: all .6s ease;
+
+        .menu_mobile_box {
+            width: 100%;
+            padding: 50px 20px;
+
+            @include bp(xsmall) {
+                padding: 50px 20px 100px 20px;
+                overflow: auto;
+            }
+
+            .mobile_menu_list {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .menu_list_item {
+                    margin-bottom: 20px;
+                    width: 100%;
+                    text-align: center;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+
+                    .menu_list_item_link {
+                        font-style: normal;
+                        font-size: 30px;
+                        font-weight: 700;
+                        letter-spacing: -0.32px;
+                        text-align: center;
+                        color: #45494F;
+
+                        &--with_arrow {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            .link_arrow {
+                                margin-left: 15px;
+                                display: block;
+                                transform: rotate(180deg);
+                                transition: all .3s ease;
+                            }
+
+                            &.collapsed {
+                                .link_arrow {
+                                    transform: none;
+                                    transition: all .3s ease;
+                                }
+                            }
+                        }
+
+                    }
+
+                    .mobile_dropdown_box {
+
+                        .dropdown_menu_mobile {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            margin-top: 15px;
+
+                            .dropdown_item_mobile {
+                                font-style: normal;
+                                font-weight: normal;
+                                font-size: 20px;
+                                line-height: 20px;
+                                letter-spacing: -0.32px;
+                                text-align: center;
+                                color: #45494F;
+                                margin-bottom: 20px;
+
+                                &:last-child {
+                                    margin-bottom: 0;
+                                }
+                            }
+
+                            &.collapse {
+                                display: none;
+
+                                &.show {
+                                    display: flex;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.open {
+            bottom: -60px;
+            transition: all .6s ease;
+        }
+
+        @include bp(medium) {
+            display: flex;
+        }
+    }
+}
